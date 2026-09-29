@@ -17,7 +17,7 @@
 \usepackage[default]{lato}
 \usepackage{microtype}
 \usepackage{booktabs}
-\usepackage{setspace, fp, ifthen}
+\usepackage{setspace, fp, ifthen, etoolbox}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
@@ -62,9 +62,11 @@
 \newcommand{\taxrateval}{}
 \newcommand{\taxrate}[1]{\renewcommand{\taxrateval}{#1}}
 
-\newcommand{\currency}[2]{
-  \newcommand{\currencycode}{#1}
-  \newcommand{\currencysymbol}{#2}
+\newcommand{\currencycode}{USD}
+\newcommand{\currencysymbol}{\$}
+\newcommand{\currency}[2]{%
+  \renewcommand{\currencycode}{#1}%
+  \renewcommand{\currencysymbol}{#2}%
 }
 
 \newcommand{\receiver}[3]{%
@@ -132,14 +134,14 @@
     \ifdefempty{\taxrateval}{}{& & \taxtext{} (\taxrateval\%) & \outputamount{\gtax}\\}
     \ifdefempty{\vatrateval}{}{& & \vattext{} (\vatrateval\%) & \outputamount{\gvat}\\}
     \\[-1em]
-    & & \textbf{TOTAL (\currencycode)} & \textbf{\outputamount{\gtotal}}\\
+    & & \textbf{\totaltext{} (\currencycode)} & \textbf{\outputamount{\gtotal}}\\
   \end{tabular}
   \vfill
 }
 
 \newcommand{\invoiceitem}[3]{%
   \updateTotals{#2}{#3}%
-  #1 & #2 & \outputamount{#3} & \outputamount{\gitemsubtotal}\\
+  #1 & \num[round-mode=none]{#2} & \outputamount{#3} & \outputamount{\gitemsubtotal}\\
 }
 
 \newcommand{\conditions}[1]{%
