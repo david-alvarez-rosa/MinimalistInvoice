@@ -4,7 +4,7 @@ professional invoices.
 
 | English                   | Spanish                   |
 |---------------------------+---------------------------|
-| [[./img/invoice-english.png]] | [[./img/invoice-spanish.png]] |
+| [[./img/invoice-english.jpg]] | [[./img/invoice-spanish.jpg]] |
 
 ** Installation
 Download =invoice.cls= file from [[https://github.com/david-alvarez-rosa/invoice/releases][releases]] and place it in the same
